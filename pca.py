@@ -3,6 +3,7 @@
 #usando 1, 3, 5 vizinhos.
 
 import math
+from k_nn import *
 
 #Operações com o arquivo contendo a database
 with open('data_banknote_authentication.txt','r') as f:
@@ -34,44 +35,6 @@ conjunto_treino = conjunto_treino_classe0 + conjunto_treino_classe1
 #definição do conjunto de teste
 conjunto_teste = lista[229:761] + lista[946:1371]
 
-#função para cálculo da distância euclidiana
-
-def distancia_eucl(item_1, item_2):
-    somatorio = 0
-    for i in range(len(item_1)-1):
-        somatorio += pow((float(item_1[i]) - float(item_2[i])),2)
-    return math.sqrt(somatorio)
-
-
-#Função do K-NN para comparar com o desempenho do método proposto
-def knn (conjunto, item, k):
-    distancias = []
-    resultado = []
-    nn = []
-    
-    for i in range(len(conjunto)):
-        distancias.append(distancia_eucl(conjunto[i], item))
-        
-    resultado = sorted(distancias)[:k]
-
-    qtdClasse0, qtdClasse1 = 0, 0
-    
-    for a in range(len(resultado)):
-        if conjunto[distancias.index(resultado[a])][4] == "0\n":
-            #print(conjunto[distancias.index(resultado[a])][4])
-            qtdClasse0 += 1
-        elif conjunto[distancias.index(resultado[a])][4] == "1\n":
-            #print(conjunto[distancias.index(resultado[a])][4])
-            qtdClasse1 += 1
-
-    #print(qtdSet)
-    #print(qtdVer)
-    #print(qtdVir)
-    
-    if (qtdClasse0 > qtdClasse1):
-        return "0\n"
-    else:
-        return "1\n"
 
 #Implementação do método proposto (pca)
 def pca(dataset):
@@ -100,11 +63,12 @@ def pca(dataset):
     x_linha = x_linha * somat
     #print(x_linha)
 
-    matriz_X = []
+    matriz_X_linha = []
     
     for k in range(len(atributo0_classe0)):
-        matriz_X.append(float(atributo0_classe0[k]) -  x_linha)
-        print(matriz_X[k])
+        matriz_X_linha.append(float(atributo0_classe0[k]) -  x_linha)
+        #print(matriz_X_linha[k])
+    print(matriz_X_linha)
 
     
 acertos = 0
