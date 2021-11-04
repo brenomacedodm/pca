@@ -23,10 +23,10 @@ def knn (conjunto, item, k):
     qtdClasse0, qtdClasse1 = 0, 0
     
     for a in range(len(resultado)):
-        if conjunto[distancias.index(resultado[a])][4] == "0\n":
+        if conjunto[distancias.index(resultado[a])][-1] == "0\n":
             #print(conjunto[distancias.index(resultado[a])][4])
             qtdClasse0 += 1
-        elif conjunto[distancias.index(resultado[a])][4] == "1\n":
+        elif conjunto[distancias.index(resultado[a])][-1] == "1\n":
             #print(conjunto[distancias.index(resultado[a])][4])
             qtdClasse1 += 1
 
